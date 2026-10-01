@@ -1,0 +1,36 @@
+
+digraph G {
+    graph [rankdir=LR, bgcolor="white", fontsize=12, fontname="DejaVu Sans"];
+    node [shape=record, fontname="DejaVu Sans", fontsize=10, style="rounded,filled", fillcolor="#f7fbfa", color="#2d6a5d"];
+    edge [fontname="DejaVu Sans", fontsize=9, color="#2d6a5d"];
+    User [label="{User (abstract)|- id:int\l- name:String\l- email:String\l- password:String\l- role:String\l- active:boolean\l|+ getDashboardName():String\l}"];
+    Admin [label="{Admin|- accessLevel:int\l|+ getDashboardName():String\l}"];
+    Staff [label="{Staff|- shift:String\l- position:String\l|+ getDashboardName():String\l}"];
+    Customer [label="{Customer|- address:String\l- phone:String\l|+ getDashboardName():String\l}"];
+    MenuItem [label="{MenuItem|- id:int\l- name:String\l- category:String\l- price:BigDecimal\l- stock:int\l- available:boolean\l|+ updateStock(qty):void\l}"];
+    Order [label="{Order|- id:int\l- customerId:Integer\l- staffId:Integer\l- status:String\l- totalPrice:BigDecimal\l- items:List<OrderItem>\l|+ calculateTotal():void\l+ updateStatus():void\l}"];
+    OrderItem [label="{OrderItem|- id:int\l- orderId:int\l- menuId:int\l- quantity:int\l- priceEach:BigDecimal\l|+ getSubtotal():BigDecimal\l}"];
+    Payment [label="{Payment|- id:int\l- orderId:int\l- amount:BigDecimal\l- method:String\l- status:String\l|+ process():String\l+ getReceipt():String\l}"];
+    DBConnection [label="{DBConnection|+ getConnection():Connection\l}", fillcolor="#fff9ed"];
+    UserDAO [label="{UserDAO|+ login()\l+ findAll()\l+ addUser()\l+ toggleActive()\l}", fillcolor="#fff9ed"];
+    MenuDAO [label="{MenuDAO|+ findAll()\l+ findAvailable()\l+ add()\l+ update()\l+ delete()\l+ reduceStock()\l}", fillcolor="#fff9ed"];
+    OrderDAO [label="{OrderDAO|+ createOrder()\l+ findAll()\l+ findByCustomer()\l+ updateStatus()\l+ deleteOrder()\l}", fillcolor="#fff9ed"];
+    PaymentDAO [label="{PaymentDAO|+ payOrder()\l+ findAll()\l}", fillcolor="#fff9ed"];
+    DashboardServlet [label="{DashboardServlet|+ doGet()\l}", fillcolor="#eef5ff"];
+    LoginServlet [label="{LoginServlet|+ doGet()\l+ doPost()\l}", fillcolor="#eef5ff"];
+    MenuServlet [label="{MenuServlet|+ doPost()\l}", fillcolor="#eef5ff"];
+    OrderServlet [label="{OrderServlet|+ doPost()\l}", fillcolor="#eef5ff"];
+    PaymentServlet [label="{PaymentServlet|+ doGet()\l+ doPost()\l}", fillcolor="#eef5ff"];
+    User -> Admin [arrowhead=empty];
+    User -> Staff [arrowhead=empty];
+    User -> Customer [arrowhead=empty];
+    Order -> OrderItem [label="1..*", arrowhead=diamond];
+    OrderItem -> MenuItem [label="menu", arrowhead=vee];
+    Order -> Payment [label="0..1", arrowhead=vee];
+    UserDAO -> User [arrowhead=vee]; UserDAO -> DBConnection [arrowhead=vee];
+    MenuDAO -> MenuItem [arrowhead=vee]; MenuDAO -> DBConnection [arrowhead=vee];
+    OrderDAO -> Order [arrowhead=vee]; OrderDAO -> MenuDAO [arrowhead=vee]; OrderDAO -> DBConnection [arrowhead=vee];
+    PaymentDAO -> Payment [arrowhead=vee]; PaymentDAO -> DBConnection [arrowhead=vee];
+    DashboardServlet -> MenuDAO [arrowhead=vee]; DashboardServlet -> OrderDAO [arrowhead=vee]; DashboardServlet -> PaymentDAO [arrowhead=vee]; DashboardServlet -> UserDAO [arrowhead=vee];
+    LoginServlet -> UserDAO [arrowhead=vee]; MenuServlet -> MenuDAO [arrowhead=vee]; OrderServlet -> OrderDAO [arrowhead=vee]; PaymentServlet -> PaymentDAO [arrowhead=vee]; PaymentServlet -> OrderDAO [arrowhead=vee];
+}

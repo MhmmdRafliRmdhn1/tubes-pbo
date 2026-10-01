@@ -1,0 +1,19 @@
+DAFTAR FILE DALAM PAKET PENGUMPULAN
+
+1. Laporan_Akhir_CafeAura.docx
+   Berisi list fitur, informasi anggota kelompok, class diagram, screenshot, database, konfigurasi, akun default, dan kesimpulan.
+
+2. Source Code CafeAuraJavaWeb
+   Berisi project Java Web JSP/Servlet terbaru tanpa folder build/target.
+
+3. database/cafe_aura.sql
+   File export database MySQL yang dapat di-import melalui phpMyAdmin.
+
+4. laporan_assets/class_diagram.png
+   Gambar class diagram aplikasi.
+
+5. laporan_assets/screenshots
+   Folder screenshot tampilan aplikasi.
+
+6. ONLINE_TEXT_KONFIGURASI.txt
+   Teks konfigurasi untuk diisi pada kolom online text LMS.

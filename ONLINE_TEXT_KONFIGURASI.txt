@@ -1,0 +1,27 @@
+INFORMASI ONLINE TEXT / KONFIGURASI APLIKASI
+
+Nama Project: CafeAuraJavaWeb
+Jenis: Java Web JSP/Servlet + MySQL
+
+Cara konfigurasi:
+1. Import database/cafe_aura.sql melalui phpMyAdmin.
+2. Pastikan MySQL berjalan di localhost:3306.
+3. Konfigurasi database berada pada:
+   src/main/java/com/cafeaura/config/DBConnection.java
+4. Default konfigurasi:
+   Database : cafe_aura
+   Username : root
+   Password : kosong
+5. Jalankan project menggunakan Apache Tomcat 10/10.1.
+6. URL aplikasi: http://localhost:8080/CafeAuraJavaWeb
+
+Akun default per role:
+- Admin    : admin@2f.com / admin123
+- Staff    : staff@2f.com / staff123
+- Customer : customer@2f.com / customer123
+
+Catatan pengumpulan:
+- Source code yang dikumpulkan adalah source code terbaru.
+- Folder build/target tidak disertakan.
+- File database SQL berada di database/cafe_aura.sql dan dapat di-import ulang tanpa error karena memakai DROP DATABASE IF EXISTS.
+- Jika memakai link GDrive/OneDrive, pastikan link dibuat public atau anyone with the link can view/download.
